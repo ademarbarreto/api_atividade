@@ -1,4 +1,5 @@
-from models import Pessoas
+from models import Pessoas, Usuarios
+
 
 # Realiza consulta de dados na tabela pessoa
 def consulta_pessoas():
@@ -6,7 +7,7 @@ def consulta_pessoas():
     pessoas = Pessoas.query.all()
     print(pessoas)
     pessoa = Pessoas.query.filter_by(nome='Ademar').first()
-    print(pessoa.idade)
+    #print(pessoa.idade)
     # for p in pessoa:
     #     print(p)
     #     print(p.nome)
@@ -29,8 +30,19 @@ def exclui_pessoa():
     pessoa = Pessoas.query.filter_by(nome='Pepinha').first()
     pessoa.delete()
 
+def insere_usuario(login, senha):
+    usuario = Usuarios(login=login,senha=senha)
+    usuario.save()
+
+def consulta_todos_usuarios():
+    usuarios = Usuarios.query.all()
+    print(usuarios)
+
 if __name__ == '__main__':
+    insere_usuario('ademar', '1234')
+    insere_usuario('pepinha', '4321')
+    consulta_todos_usuarios()
     #insere_pessoas()
     #altera_pessoa()
-    exclui_pessoa()
-    consulta_pessoas()
+    #exclui_pessoa()
+    #onsulta_pessoas()
